@@ -2,7 +2,7 @@ import sys, pygame
 from Pet import Pet
 pygame.init()
 
-size = width, height = 320, 240
+size = width, height = 400, 400
 
 screen = pygame.display.set_mode(size)
 
@@ -18,9 +18,9 @@ def main():
             if event.type == pygame.QUIT:
                 sys.exit()
         screen.fill((0, 0, 0))
-       #screen.blit(cat, (0, 0))
+        screen.blit(cat, (0, 0))
         pygame.display.flip()
-        
+
 
 
 
