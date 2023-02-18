@@ -24,12 +24,13 @@ class SpriteSheet():
 
 
 class Button():
-    def __init__(self, colour, x, y, width, height, text=''):
+    def __init__(self, colour, x, y, width, height, font, text='', textSize=32):
         self.colour = colour
         self.x = x
         self.y = y
         self.width = width
         self.height = height
+        self.font = pygame.font.Font(font, textSize)
         self.text = text
 
     def draw(self, screen, outline=None):
@@ -40,8 +41,7 @@ class Button():
         pygame.draw.rect(screen, self.colour, (self.x,self.y,self.width,self.height),0)
 
         if self.text != '':
-            font = pygame.font.SysFont('comicsans', 60)
-            text = font.render(self.text, 1, (0,0,0))
+            text = self.font.render(self.text, 1, (0,0,0))
             screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
     
     def getMouseClick(self, pos):
@@ -53,12 +53,10 @@ class Button():
 def main():
     FPS = 60
     clock = pygame.time.Clock()
-    
-    frameCount = 0
-    loopCount = 0
-    startButton = Button((255, 0, 0), 100, 100, 200, 200, 'Start')
+    hasStarted = False
+    startButton = Button((96, 87, 95), 150, 175, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
     while True:
-        frame = cat.get_image(frameCount, 25, 25, 2, (0,0,0))
+        ##frame = cat.get_image(frameCount, 25, 25, 2, (0,0,0))
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -66,9 +64,24 @@ def main():
         
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
+        screen.fill((157, 141, 128)) 
+        if not hasStarted:
+            startButton.draw(screen)
 
-        startButton.draw(screen, (0,0,0))
+        #check if the mouse is clicked
+        if not hasStarted:
+            if pygame.mouse.get_pressed()[0]:
+                pos = pygame.mouse.get_pos()
+                if startButton.getMouseClick(pos):
+                    print("Clicked")
+                    hasStarted = True
+                    #destroy button
+                    startButton = None
 
+
+        # main game loop
+        if hasStarted:
+            
         
 
         
