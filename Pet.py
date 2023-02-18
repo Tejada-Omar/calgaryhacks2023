@@ -1,7 +1,9 @@
 import pygame
 
-class Pet(pygame.sprite):
+class Pet(pygame.sprite.Sprite):
     def __init__(self, health = 100, hunger = 100, fitness = 100, energy = 100):
+        super().__init__()
+        
         self.health = health
         self.hunger = hunger
         self.fitness = fitness

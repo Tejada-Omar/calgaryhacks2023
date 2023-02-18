@@ -1,12 +1,12 @@
 import sys, pygame
-from Pet import Pet
+import Pet
 pygame.init()
 
 size = width, height = 400, 400
 
 screen = pygame.display.set_mode(size)
 
-cat = pygame.image.load("assets/pets/placeholder.png")
+cat = pygame.image.load("assets/pets/catOrange.gif")
 
 
 def main():
