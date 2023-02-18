@@ -13,7 +13,7 @@ class Pet(pygame.sprite.Sprite):
 
     def move(self, x=0, y=1):
         self.rect.move_ip(x,y)
-        
+
     def draw(self, _surface, frame , width, height, scale = 1, colorkey = None):
         img = pygame.surface.Surface((width, height))
         img.blit(self.sprite, (0,0), (frame * width, 0, width, height))
@@ -24,11 +24,20 @@ class Pet(pygame.sprite.Sprite):
             img.set_colorkey(colorkey, pygame.RLEACCEL)
         _surface.blit(_surface, (0,0))
 
+    def getHunger(self):
+        return self.hunger
+
     def setHunger(self, amount):
         self.hunger = min(100, amount)
-        
+
+    def getFitness(self):
+        return self.hunger
+
     def setFitness(self, amount):
         self.fitness = min(100, amount)
-    
+
+    def getEnergy(self):
+        return self.hunger
+
     def setEnergy(self, amount):
         self.energy = min(100, amount)
