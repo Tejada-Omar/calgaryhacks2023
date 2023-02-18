@@ -1,5 +1,5 @@
 import sys, pygame
-from Pet import Pet
+##from Pet import Pet
 pygame.init()
 
 size = width, height = 400, 400
