@@ -1,26 +1,15 @@
 import sys, pygame
 import Pet
 import Background
+import time
+import os
 pygame.init()
 
 size = width, height = 400, 400
 
 screen = pygame.display.set_mode(size)
 
-cat = pygame.image.load("assets/pets/catOrange.png").convert_alpha()
 background = Background.Background("assets/background.png", (0,0))
-
-class SpriteSheet():
-	def __init__(self, image):
-		self.sheet = image
-
-	def get_image(self, frame, width, height, scale, colour):
-		image = pygame.Surface((width, height)).convert_alpha()
-		image.blit(self.sheet, (0, 0), ((frame * width), 0, width, height))
-		image = pygame.transform.scale(image, (width * scale, height * scale))
-		image.set_colorkey(colour)
-
-		return image
 
 
 class Button():
@@ -54,9 +43,11 @@ class Button():
 def main():
     FPS = 60
     clock = pygame.time.Clock()
-
+    currentTime = time.time()
+    firstPlay = True
     hasStarted = False
     startButton = Button((96, 87, 95), 150, 175, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
+    pets = []
     while True:
         frame = SpriteSheet(cat).get_image(0, 25, 25, 2, (0,0,0))
 
@@ -81,9 +72,27 @@ def main():
                     #destroy button
                     startButton = None
 
+                
+
 
         # main game loop
         if hasStarted:
+            if firstPlay:
+                ## pick pet
+                ## look through assets/pets
+                folder = "assets/pets"
+                for filename in os.listdir(folder):
+                    if filename.endswith(".png"):
+                        pets.append(Pet.Pet(filename, (0,0)))
+
+                    
+
+                ## name pet 
+
+
+            
+            
+
             
         
 
