@@ -1,4 +1,5 @@
 import pygame
+from Status import Status, Health, Hunger, Fitness, Energy
 
 
 class SpriteSheet():
@@ -20,10 +21,10 @@ class Pet(pygame.sprite.Sprite):
         self.sprite = SpriteSheet(spriteSheet)
         # self.rect = self.sprite.get_Rect()
         # self.rect.center = (x, y)
-        self.health = health
-        self.hunger = hunger
-        self.fitness = fitness
-        self.energy = energy
+        self.health = Health(health)
+        self.hunger = Hunger(hunger)
+        self.fitness = Fitness(fitness)
+        self.energy = Energy(energy)
 
     def move(self, x=0, y=1):
         self.rect.move_ip(x,y)
@@ -33,20 +34,14 @@ class Pet(pygame.sprite.Sprite):
         
         _surface.blit(self.sprite.get_image(frame, width, height, scale, colour), location)
 
+    def getHealth(self):
+        return self.health
+
     def getHunger(self):
         return self.hunger
 
-    def setHunger(self, amount):
-        self.hunger = min(100, amount)
-
     def getFitness(self):
-        return self.hunger
-
-    def setFitness(self, amount):
-        self.fitness = min(100, amount)
+        return self.fitness
 
     def getEnergy(self):
-        return self.hunger
-
-    def setEnergy(self, amount):
-        self.energy = min(100, amount)
+        return self.energy
