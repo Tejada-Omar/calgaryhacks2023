@@ -41,9 +41,14 @@ class Button():
         pygame.draw.rect(screen, self.colour, (self.x,self.y,self.width,self.height),0)
 
         if self.text != '':
+    <<<<<<< HEAD
             text = self.font.render(self.text, 1, (0,0,0))
+=======
+            font = pygame.font.SysFont('comicsans', 60)
+            text = font.render(self.text, True, (0,0,0))
+>>>>>>> a6b0a715f0b5e1bac3863c422dc96c13b32f5665
             screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
-    
+
     def getMouseClick(self, pos):
         if self.x + self.width > pos[0] > self.x and self.y + self.height > pos[1] > self.y:
             return True
@@ -53,15 +58,17 @@ class Button():
 def main():
     FPS = 60
     clock = pygame.time.Clock()
+
     hasStarted = False
     startButton = Button((96, 87, 95), 150, 175, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
     while True:
-        ##frame = cat.get_image(frameCount, 25, 25, 2, (0,0,0))
+        frame = SpriteSheet(cat).get_image(0, 25, 25, 2, (0,0,0))
+
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-        
+
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
         screen.fill((157, 141, 128)) 
@@ -78,15 +85,19 @@ def main():
                     #destroy button
                     startButton = None
 
+<<<<<<< HEAD
 
         # main game loop
         if hasStarted:
             
         
+=======
+>>>>>>> a6b0a715f0b5e1bac3863c422dc96c13b32f5665
 
-        
-        
-       
+
+
+
+
         pygame.display.flip()
 
 
