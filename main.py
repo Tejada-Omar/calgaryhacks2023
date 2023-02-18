@@ -41,9 +41,9 @@ class Button():
 
         if self.text != '':
             font = pygame.font.SysFont('comicsans', 60)
-            text = font.render(self.text, 1, (0,0,0))
+            text = font.render(self.text, True, (0,0,0))
             screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
-    
+
     def getMouseClick(self, pos):
         if self.x + self.width > pos[0] > self.x and self.y + self.height > pos[1] > self.y:
             return True
