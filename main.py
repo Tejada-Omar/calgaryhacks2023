@@ -41,12 +41,8 @@ class Button():
         pygame.draw.rect(screen, self.colour, (self.x,self.y,self.width,self.height),0)
 
         if self.text != '':
-    <<<<<<< HEAD
+
             text = self.font.render(self.text, 1, (0,0,0))
-=======
-            font = pygame.font.SysFont('comicsans', 60)
-            text = font.render(self.text, True, (0,0,0))
->>>>>>> a6b0a715f0b5e1bac3863c422dc96c13b32f5665
             screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
     def getMouseClick(self, pos):
@@ -85,14 +81,11 @@ def main():
                     #destroy button
                     startButton = None
 
-<<<<<<< HEAD
 
         # main game loop
         if hasStarted:
             
         
-=======
->>>>>>> a6b0a715f0b5e1bac3863c422dc96c13b32f5665
 
 
 
