@@ -53,27 +53,27 @@ class Button():
 def main():
     FPS = 60
     clock = pygame.time.Clock()
-    
+
     frameCount = 0
     loopCount = 0
     startButton = Button((255, 0, 0), 100, 100, 200, 200, 'Start')
     while True:
-        frame = cat.get_image(frameCount, 25, 25, 2, (0,0,0))
+        frame = SpriteSheet(cat).get_image(frameCount, 25, 25, 2, (0,0,0))
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-        
+
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
 
         startButton.draw(screen, (0,0,0))
 
-        
 
-        
-        
-       
+
+
+
+
         pygame.display.flip()
 
 
