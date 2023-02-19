@@ -1,12 +1,12 @@
 import sys, pygame
-from SpriteSheet import SpriteSheet
+from . import SpriteSheet
 sys.path.append("../")
 from Status import Status, Health, Hunger, Fitness, Energy
 
 class Pet(pygame.sprite.Sprite):
     def __init__(self,spriteSheet, name = None, health = 100, hunger = 100, fitness = 100, energy = 100):
         super().__init__()
-        self.sprite = SpriteSheet(spriteSheet)
+        self.sprite = SpriteSheet.SpriteSheet(spriteSheet)
         # self.rect = self.sprite.get_Rect()
         # self.rect.center = (x, y)
         self.health = Health(health)
