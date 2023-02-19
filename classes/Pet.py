@@ -1,7 +1,26 @@
+<<<<<<< HEAD
 import sys, pygame
 from . import SpriteSheet
 sys.path.append("../")
 from Status import Status, Health, Hunger, Fitness, Energy
+=======
+import pygame
+from classes.Status import Status, Health, Hunger, Fitness, Energy
+
+
+class SpriteSheet():
+	def __init__(self, image):
+		self.sheet = image
+
+	def get_image(self, frame, width, height, scale, colour):
+		image = pygame.Surface((width, height)).convert_alpha()
+		image.blit(self.sheet, (0, 0), ((frame * width), 0, width, height))
+		image = pygame.transform.scale(image, (width * scale, height * scale))
+		image.set_colorkey(colour)
+
+		return image
+
+>>>>>>> 7d525d96bd85d3a466aac1a8bc3e7fb1ac7c0f20
 
 class Pet(pygame.sprite.Sprite):
     def __init__(self,spriteSheet, name = None, health = 100, hunger = 100, fitness = 100, energy = 100):

@@ -19,8 +19,7 @@ class StatusBar(pygame.sprite.Sprite):
     def draw(self, surface):
         pygame.draw.rect(surface, (255,255,255), (self.position, (self.width, self.height)))
         pygame.draw.rect(surface, self.color, (self.position, (self.width*self.percent, self.height)))
-        
+
         if(self.text != ""):
             text = self.font.render(self.text, 1, (0,0,0))
             surface.blit(text, self.position)
-        
