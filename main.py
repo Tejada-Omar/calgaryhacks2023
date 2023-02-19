@@ -19,10 +19,12 @@ def main():
     currentTime = time.time()
     firstPlay = True
     hasStarted = False
-    startButton = Button.Button((96, 87, 95), 150, 175, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
+    startButton = Button((96, 87, 95), 350, 250, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
     pets = []
     pet = None
     while True:
+
+
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -31,11 +33,10 @@ def main():
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
         screen.fill((157, 141, 128))
-        if not hasStarted:
+        if not hasStarted and startButton != None:
             startButton.draw(screen)
 
-        #check if the mouse is clicked
-        if not hasStarted:
+            #check if the mouse is clicked
             if pygame.mouse.get_pressed()[0]:
                 pos = pygame.mouse.get_pos()
                 if startButton.getMouseClick(pos):
@@ -43,6 +44,10 @@ def main():
                     hasStarted = True
                     #destroy button
                     startButton = None
+                    continue
+
+
+
 
         # main game loop
         if hasStarted:
@@ -84,6 +89,10 @@ def main():
                                 break
                     pygame.display.flip()
 
+
+
+
+
                 # main game
                 screen.fill((157, 141, 128))
                 while pet.getHealth().getAmount() > 0:
@@ -104,6 +113,21 @@ def main():
                     exerciseButton.draw(screen)
                     pygame.display.flip()
                 ## name pet
+
+
+
+
+
+
+
+
+
+
+
+
         pygame.display.flip()
+
+
+
 
 main()
