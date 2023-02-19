@@ -89,9 +89,13 @@ def main():
                         if event.type == pygame.QUIT:
                             sys.exit()
 
-                    healthBar = StatusBar.StatusBar(position = (20,480), text="Health", width=200)
-                    fitnessBar = StatusBar.StatusBar(position = (20,520), text = "Fitness")
-                    energyBar = StatusBar.StatusBar(position = (20,560), text = "Energy")
+                    healthBar = StatusBar.StatusBar(StatusBar.SpriteSheet(pygame.image.load("assets/actions/hunger.png").convert_alpha()),
+                                        position = (20,480), text="Health",
+                                        width=200)
+                    fitnessBar = StatusBar.StatusBar(StatusBar.SpriteSheet(pygame.image.load("assets/actions/fitness.png")),
+                                        position = (20,520), text = "Fitness")
+                    energyBar = StatusBar.StatusBar(StatusBar.SpriteSheet(pygame.image.load("assets/actions/energy.png")),
+                                        position = (20,560), text = "Energy")
                     pet.draw(screen, 0, 25, 25, (0,0), scale=20)
                     healthBar.draw(screen)
                     fitnessBar.draw(screen)
