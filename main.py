@@ -30,7 +30,7 @@ class Button():
 
         if self.text != '':
 
-            text = self.font.render(self.text, 1, (0,0,0))
+            text = self.font.render(self.text, True, (0,0,0))
             screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
     def getMouseClick(self, pos):
