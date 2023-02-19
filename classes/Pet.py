@@ -1,5 +1,5 @@
 import pygame
-from Status import Status, Health, Hunger, Fitness, Energy
+from classes.Status import Status, Health, Hunger, Fitness, Energy
 
 
 class SpriteSheet():

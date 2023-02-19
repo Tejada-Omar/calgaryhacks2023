@@ -19,7 +19,7 @@ def main():
     currentTime = time.time()
     firstPlay = True
     hasStarted = False
-    startButton = Button((96, 87, 95), 350, 250, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
+    startButton = Button.Button((96, 87, 95), 350, 250, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
     pets = []
     pet = None
     while True:
@@ -72,7 +72,7 @@ def main():
                 #halt program until user selects pet
                 selected = False
                 while not(selected):
-                    
+
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             sys.exit()
@@ -99,7 +99,7 @@ def main():
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             sys.exit()
-                    
+
                     healthBar = StatusBar.StatusBar(position = (20,480), text="Health", width=200)
                     fitnessBar = StatusBar.StatusBar(position = (20,520), text = "Fitness")
                     energyBar = StatusBar.StatusBar(position = (20,560), text = "Energy")
