@@ -103,12 +103,11 @@ def main():
                     if pygame.mouse.get_pressed()[0]:
                         pos = pygame.mouse.get_pos()
                         for i in range(len(pets)):
-                            if pos[0] < (i+1)*25 and pos[0] > i*25:
-                                print("selected pet: " + str(i))
-                                name = input("Enter a name for your pet: ")
-                                pets[i].setName(name)
-                                print(pets[i].name)
-                                firstPlay = False
+                            if pos[0] > i*32 and pos[0] < i*32 + 32:
+                                print("pet selected")
+                                print(i)
+                                
+                                #set pet   
                                 break
                     pygame.display.flip()
                 
