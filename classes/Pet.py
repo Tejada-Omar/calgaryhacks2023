@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import sys, pygame
-from . import SpriteSheet
 sys.path.append("../")
-from Status import Status, Health, Hunger, Fitness, Energy
-=======
-import pygame
 from classes.Status import Status, Health, Hunger, Fitness, Energy
-
 
 class SpriteSheet():
 	def __init__(self, image):
@@ -20,12 +14,10 @@ class SpriteSheet():
 
 		return image
 
->>>>>>> 7d525d96bd85d3a466aac1a8bc3e7fb1ac7c0f20
-
 class Pet(pygame.sprite.Sprite):
     def __init__(self,spriteSheet, name = None, health = 100, hunger = 100, fitness = 100, energy = 100):
         super().__init__()
-        self.sprite = SpriteSheet.SpriteSheet(spriteSheet)
+        self.sprite = SpriteSheet(spriteSheet)
         # self.rect = self.sprite.get_Rect()
         # self.rect.center = (x, y)
         self.health = Health(health)
