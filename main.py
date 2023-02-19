@@ -5,7 +5,7 @@ import time
 import os
 pygame.init()
 
-size = width, height = 400, 400
+size = width, height = 800, 600
 
 screen = pygame.display.set_mode(size)
 
@@ -49,7 +49,7 @@ def main():
     startButton = Button((96, 87, 95), 150, 175, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
     pets = []
     while True:
-        frame = SpriteSheet(cat).get_image(0, 25, 25, 2, (0,0,0))
+        
 
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -81,9 +81,37 @@ def main():
                 ## pick pet
                 ## look through assets/pets
                 folder = "assets/pets"
+                
                 for filename in os.listdir(folder):
                     if filename.endswith(".png"):
-                        pets.append(Pet.Pet(filename, (0,0)))
+                        surface = pygame.image.load(os.path.join(folder, filename)).convert_alpha()
+                        pets.append(Pet.Pet(surface))
+
+                        
+                        print(filename)
+
+                #draw pet selection screen
+                for i in range(len(pets)):
+                    pets[i].draw(screen, 0, 25, 25, (i*32, 0))
+                    print(i)
+                
+                #halt program until user selects pet
+                while True:
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            sys.exit()
+                    if pygame.mouse.get_pressed()[0]:
+                        pos = pygame.mouse.get_pos()
+                        for i in range(len(pets)):
+                            if pos[0] < (i+1)*25 and pos[0] > i*25:
+                                print("selected pet: " + str(i))
+                                name = input("Enter a name for your pet: ")
+                                pets[i].setName(name)
+                                print(pets[i].name)
+                                firstPlay = False
+                                break
+                    pygame.display.flip()
+                
 
                     
 
