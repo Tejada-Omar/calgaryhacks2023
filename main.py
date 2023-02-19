@@ -1,5 +1,5 @@
 import sys, pygame
-import Pet
+import classes.Pet as Pet
 import Background
 import time
 import os
@@ -56,6 +56,7 @@ def main():
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
         screen.fill((157, 141, 128))
+        pygame.draw.rect(screen, (255,0,0), (0,0,400,400))
         if not hasStarted:
             startButton.draw(screen)
 
