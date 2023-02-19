@@ -2,7 +2,7 @@ import pygame
 
 class StatusBar(pygame.sprite.Sprite):
     
-    def __init__(self, color = (255,0,0), position = (0,0), percent=100, width = 200, height = 20, font="assets/fonts/Mynerve-Regular.ttf", text = "", ):
+    def __init__(self, color = (255,0,0), position = (0,0), percent=1, width = 200, height = 20, font="assets/fonts/Mynerve-Regular.ttf", text = "", ):
         super().__init__()
         self.percent = percent
         self.width = width

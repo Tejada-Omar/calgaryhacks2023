@@ -33,7 +33,7 @@ class Pet(pygame.sprite.Sprite):
     def setName(self, name):
         self.name = name
 
-    def draw(self, _surface, frame , width, height, location, scale = 1, colour = (255, 255, 255)):
+    def draw(self, _surface, frame , width, height, location, scale = 1, colour = (0, 0, 0)):
         _surface.blit(self.sprite.get_image(frame, width, height, scale, colour), location)
 
     def getHealth(self):

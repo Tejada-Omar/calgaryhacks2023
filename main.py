@@ -1,5 +1,7 @@
 import sys, pygame
 import classes.Pet as Pet
+import classes.Button as Button
+import classes.StatusBar as StatusBar
 import Background
 import time
 import os
@@ -11,42 +13,15 @@ screen = pygame.display.set_mode(size)
 
 background = Background.Background("assets/background.png", (0,0))
 
-class Button():
-    def __init__(self, colour, x, y, width, height, font, text='', textSize=32):
-        self.colour = colour
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.font = pygame.font.Font(font, textSize)
-        self.text = text
-
-    def draw(self, screen, outline=None):
-        #Call this method to draw the button on the screen
-        if outline:
-            pygame.draw.rect(screen, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
-
-        pygame.draw.rect(screen, self.colour, (self.x,self.y,self.width,self.height),0)
-
-        if self.text != '':
-
-            text = self.font.render(self.text, True, (0,0,0))
-            screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
-
-    def getMouseClick(self, pos):
-        if self.x + self.width > pos[0] > self.x and self.y + self.height > pos[1] > self.y:
-            return True
-
-        return False
-
 def main():
     FPS = 60
     clock = pygame.time.Clock()
     currentTime = time.time()
     firstPlay = True
     hasStarted = False
-    startButton = Button((96, 87, 95), 150, 175, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
+    startButton = Button.Button((96, 87, 95), 150, 175, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
     pets = []
+    pet = None
     while True:
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -56,7 +31,6 @@ def main():
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
         screen.fill((157, 141, 128))
-        pygame.draw.rect(screen, (255,0,0), (0,0,400,400))
         if not hasStarted:
             startButton.draw(screen)
 
@@ -91,7 +65,9 @@ def main():
                     print(i)
 
                 #halt program until user selects pet
-                while True:
+                selected = False
+                while not(selected):
+                    
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             sys.exit()
@@ -103,7 +79,29 @@ def main():
                                 print(i)
 
                                 #set pet
+                                pet = pets[i]
+                                selected = True
                                 break
+                    pygame.display.flip()
+
+                # main game
+                screen.fill((157, 141, 128))
+                while pet.getHealth().getAmount() > 0:
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            sys.exit()
+                    
+                    healthBar = StatusBar.StatusBar(position = (20,480), text="Health", width=200)
+                    fitnessBar = StatusBar.StatusBar(position = (20,520), text = "Fitness")
+                    energyBar = StatusBar.StatusBar(position = (20,560), text = "Energy")
+                    pet.draw(screen, 0, 25, 25, (0,0), scale=20)
+                    healthBar.draw(screen)
+                    fitnessBar.draw(screen)
+                    energyBar.draw(screen)
+                    feedButton = Button.Button((0, 255, 0), 500, 200, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Feed')
+                    exerciseButton = Button.Button((0, 255, 0), 500, 400, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Exercise')
+                    feedButton.draw(screen)
+                    exerciseButton.draw(screen)
                     pygame.display.flip()
                 ## name pet
         pygame.display.flip()
