@@ -23,8 +23,6 @@ def main():
     pets = []
     pet = None
     while True:
-
-
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -46,9 +44,6 @@ def main():
                     startButton = None
                     continue
 
-
-
-
         # main game loop
         if hasStarted:
             if firstPlay:
@@ -61,7 +56,6 @@ def main():
                         surface = pygame.image.load(os.path.join(folder, filename)).convert_alpha()
                         pets.append(Pet.Pet(surface))
 
-
                         print(filename)
 
                 #draw pet selection screen
@@ -72,7 +66,6 @@ def main():
                 #halt program until user selects pet
                 selected = False
                 while not(selected):
-
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             sys.exit()
@@ -88,10 +81,6 @@ def main():
                                 selected = True
                                 break
                     pygame.display.flip()
-
-
-
-
 
                 # main game
                 screen.fill((157, 141, 128))
@@ -114,20 +103,6 @@ def main():
                     pygame.display.flip()
                 ## name pet
 
-
-
-
-
-
-
-
-
-
-
-
         pygame.display.flip()
-
-
-
 
 main()
