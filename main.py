@@ -13,7 +13,18 @@ screen = pygame.display.set_mode(size)
 
 background = Background.Background("assets/background.png", (0,0))
 
+def startGame(startButton):
+    if startButton != None:
+        startButton.draw(screen)
 
+        #check if the mouse is clicked
+        if pygame.mouse.get_pressed()[0]:
+            pos = pygame.mouse.get_pos()
+            if startButton.getMouseClick(pos):
+                print("Clicked")
+                #destroy button
+                startButton = None
+                return True
 
 def main():
     FPS = 60
@@ -31,18 +42,9 @@ def main():
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
         screen.fill((157, 141, 128))
-        if not hasStarted and startButton != None:
-            startButton.draw(screen)
-
-            #check if the mouse is clicked
-            if pygame.mouse.get_pressed()[0]:
-                pos = pygame.mouse.get_pos()
-                if startButton.getMouseClick(pos):
-                    print("Clicked")
-                    hasStarted = True
-                    #destroy button
-                    startButton = None
-                    continue
+        if not hasStarted and startGame(startButton):
+            hasStarted = True
+            continue
 
         # main game loop
         if hasStarted:
@@ -116,7 +118,7 @@ def main():
                         if exerciseButton.getMouseClick(pos):
                             fitnessBar.setPercent(1)
                     pygame.display.flip()
-                
+
                 screen.fill((157, 141, 128))
                 restartButton = Button.Button((0, 0, 255), 350, 275, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Play Again?')
                 restartButton.draw(screen)
