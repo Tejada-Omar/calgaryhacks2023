@@ -1,5 +1,5 @@
 import sys, pygame
-import classes.Pet as Pet
+import Pet
 import Background
 import time
 import os
@@ -10,6 +10,7 @@ size = width, height = 800, 600
 screen = pygame.display.set_mode(size)
 
 background = Background.Background("assets/background.png", (0,0))
+
 
 class Button():
     def __init__(self, colour, x, y, width, height, font, text='', textSize=32):
@@ -30,7 +31,7 @@ class Button():
 
         if self.text != '':
 
-            text = self.font.render(self.text, True, (0,0,0))
+            text = self.font.render(self.text, 1, (0,0,0))
             screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
     def getMouseClick(self, pos):
@@ -45,9 +46,11 @@ def main():
     currentTime = time.time()
     firstPlay = True
     hasStarted = False
-    startButton = Button((96, 87, 95), 150, 175, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
+    startButton = Button((96, 87, 95), 350, 250, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
     pets = []
     while True:
+        
+
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -55,8 +58,7 @@ def main():
 
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
-        screen.fill((157, 141, 128))
-        pygame.draw.rect(screen, (255,0,0), (0,0,400,400))
+        screen.fill((157, 141, 128)) 
         if not hasStarted:
             startButton.draw(screen)
 
@@ -69,6 +71,10 @@ def main():
                     hasStarted = True
                     #destroy button
                     startButton = None
+                    continue
+
+                
+
 
         # main game loop
         if hasStarted:
@@ -76,20 +82,20 @@ def main():
                 ## pick pet
                 ## look through assets/pets
                 folder = "assets/pets"
-
+                
                 for filename in os.listdir(folder):
                     if filename.endswith(".png"):
                         surface = pygame.image.load(os.path.join(folder, filename)).convert_alpha()
                         pets.append(Pet.Pet(surface))
 
-
+                        
                         print(filename)
 
                 #draw pet selection screen
                 for i in range(len(pets)):
                     pets[i].draw(screen, 0, 25, 25, (i*32, 0))
                     print(i)
-
+                
                 #halt program until user selects pet
                 while True:
                     for event in pygame.event.get():
@@ -101,11 +107,30 @@ def main():
                             if pos[0] > i*32 and pos[0] < i*32 + 32:
                                 print("pet selected")
                                 print(i)
-
-                                #set pet
+                                
+                                #set pet   
                                 break
                     pygame.display.flip()
-                ## name pet
+                
+
+                    
+
+                ## name pet 
+
+
+            
+            
+
+            
+        
+
+
+
+
+
         pygame.display.flip()
+
+
+
 
 main()
