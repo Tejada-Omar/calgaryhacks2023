@@ -29,11 +29,11 @@ class Pet(pygame.sprite.Sprite):
 
     def move(self, x=0, y=1):
         self.rect.move_ip(x,y)
+
     def setName(self, name):
         self.name = name
+
     def draw(self, _surface, frame , width, height, location, scale = 1, colour = (255, 255, 255)):
-
-
         _surface.blit(self.sprite.get_image(frame, width, height, scale, colour), location)
 
     def getHealth(self):
