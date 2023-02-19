@@ -49,7 +49,7 @@ def main():
     startButton = Button((96, 87, 95), 350, 250, 100, 50, "assets/fonts/Mynerve-Regular.ttf",'Start')
     pets = []
     while True:
-        
+
 
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -58,12 +58,11 @@ def main():
 
         # screen.blit(Background.sprite, Background.rect)
         #draw button in the middle of the screen
-        screen.fill((157, 141, 128)) 
-        if not hasStarted:
+        screen.fill((157, 141, 128))
+        if not hasStarted and startButton != None:
             startButton.draw(screen)
 
-        #check if the mouse is clicked
-        if not hasStarted:
+            #check if the mouse is clicked
             if pygame.mouse.get_pressed()[0]:
                 pos = pygame.mouse.get_pos()
                 if startButton.getMouseClick(pos):
@@ -73,7 +72,7 @@ def main():
                     startButton = None
                     continue
 
-                
+
 
 
         # main game loop
@@ -82,20 +81,20 @@ def main():
                 ## pick pet
                 ## look through assets/pets
                 folder = "assets/pets"
-                
+
                 for filename in os.listdir(folder):
                     if filename.endswith(".png"):
                         surface = pygame.image.load(os.path.join(folder, filename)).convert_alpha()
                         pets.append(Pet.Pet(surface))
 
-                        
+
                         print(filename)
 
                 #draw pet selection screen
                 for i in range(len(pets)):
                     pets[i].draw(screen, 0, 25, 25, (i*32, 0))
                     print(i)
-                
+
                 #halt program until user selects pet
                 while True:
                     for event in pygame.event.get():
@@ -107,22 +106,22 @@ def main():
                             if pos[0] > i*32 and pos[0] < i*32 + 32:
                                 print("pet selected")
                                 print(i)
-                                
-                                #set pet   
+
+                                #set pet
                                 break
                     pygame.display.flip()
-                
-
-                    
-
-                ## name pet 
 
 
-            
-            
 
-            
-        
+
+                ## name pet
+
+
+
+
+
+
+
 
 
 
