@@ -52,36 +52,49 @@ def main():
                 ## pick pet
                 ## look through assets/pets
                 folder = "assets/pets"
-                pets = []
+                pets = pygame.sprite.Group()
                 for filename in os.listdir(folder):
                     if filename.endswith(".png"):
                         surface = pygame.image.load(os.path.join(folder, filename)).convert_alpha()
-                        pets.append(Pet.Pet(surface))
+                        pets.add(Pet.Pet(surface))
 
                         print(filename)
                 screen.fill((157, 141, 128))
                 #draw pet selection screen
-                for i in range(len(pets)):
-                    pets[i].draw(screen, 0, 25, 25, (i*150-20, 200), 10)
-                    print(i)
+                pets.draw(screen)
+                # for i in range(len(pets)):
+                #     pets[i].draw(screen, 0, 25, 25, (i*150-20, 200), 10)
+                #     print(i)
 
                 #halt program until user selects pet
                 selected = False
-                while not(selected):
+                while not selected:
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             sys.exit()
-                    if pygame.mouse.get_pressed()[0]:
-                        pos = pygame.mouse.get_pos()
-                        for i in range(len(pets)):
-                            if pos[0] > i*150-20 and pos[0] < i*150-20 + 150:
-                                print("pet selected")
-                                print(i)
+                    for i in range(len(pets)):
+                        for event in pygame.event.get():
+                            if event.type == pygame.MOUSEBUTTONDOWN:
+                                if pets.sprites()[i].rect.collidepoint(event.pos):
+                        # if pets[i].isClicked():
+                                    print("pet selected")
+                                    print(i)
 
-                                #set pet
-                                pet = pets[i]
-                                selected = True
-                                break
+                                    #set pet
+                                    pet = pets.sprites()[i]
+                                    selected = True
+                                    break
+                    # if pygame.mouse.get_pressed()[0]:
+                    #     pos = pygame.mouse.get_pos()
+                    #     for i in range(len(pets)):
+                    #         if pos[0] > i*150-20 and pos[0] < i*150-20 + 150:
+                    #             print("pet selected")
+                    #             print(i)
+                    #
+                    #             #set pet
+                    #             pet = pets[i]
+                    #             selected = True
+                    #             break
                     pygame.display.flip()
 
                 # main game
