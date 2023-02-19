@@ -16,7 +16,7 @@ class SpriteSheet():
 
 
 class Pet(pygame.sprite.Sprite):
-    def __init__(self,spriteSheet, health = 100, hunger = 100, fitness = 100, energy = 100):
+    def __init__(self,spriteSheet, name = None, health = 100, hunger = 100, fitness = 100, energy = 100):
         super().__init__()
         self.sprite = SpriteSheet(spriteSheet)
         # self.rect = self.sprite.get_Rect()
@@ -25,13 +25,15 @@ class Pet(pygame.sprite.Sprite):
         self.hunger = Hunger(hunger)
         self.fitness = Fitness(fitness)
         self.energy = Energy(energy)
+        self.name = name
 
     def move(self, x=0, y=1):
         self.rect.move_ip(x,y)
 
+    def setName(self, name):
+        self.name = name
+
     def draw(self, _surface, frame , width, height, location, scale = 1, colour = (255, 255, 255)):
-        
-        
         _surface.blit(self.sprite.get_image(frame, width, height, scale, colour), location)
 
     def getHealth(self):

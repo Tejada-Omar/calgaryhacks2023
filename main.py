@@ -78,9 +78,6 @@ def main():
 
 
         # main game loop
-<<<<<<< HEAD
-        #if hasStarted:
-=======
         if hasStarted:
             if firstPlay:
                 ## pick pet
@@ -98,7 +95,6 @@ def main():
             
             
 
->>>>>>> 9b663c1602d4bc530b9da4f0f93746d47203c90c
             
         
 

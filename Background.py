@@ -6,6 +6,3 @@ class Background(pygame.sprite.Sprite):
         self.sprite = pygame.image.load(sprite)
         # self.rect = self.sprite.get_Rect()
         # self.rect.left, self.rect.top = position
-        
-        
-        
