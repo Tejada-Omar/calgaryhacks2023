@@ -1,4 +1,5 @@
 import sys, pygame
+sys.path.append("classes")
 import Pet
 import Background
 import time
